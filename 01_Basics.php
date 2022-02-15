@@ -8,7 +8,10 @@
             first 
             line 
         */
-        echo "I am from \"Simform\"...";
+        echo "I am from \"Simform\"...\n";
+        $word="word";
+        $pwd = "pas\$word";
+        echo $pwd;
 ?>
 
 
@@ -18,7 +21,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic PHP</title>
+    <title>Basic PHP | 1</title>
+    <style>
+        a:link, a:visited { color: rgb(0, 136, 255);}
+    </style>
 </head>
 <body>
     <h1>User Profile</h1>
@@ -26,17 +32,11 @@
     <div><?php echo "My age is $age years <br>"; ?></div>
     <div><b><?php echo $email_label.$email_id ?></b></div>
     <?php 
-
-        // String Operators
-        echo "<h3> String Operations</h3>";
-        echo "Length: ".strlen(NAME)."<br/>";
-        echo "ToUpper: ".strtoupper(NAME)."<br/>";
-        echo "ToLower: ".strtolower(NAME)."<br/>";
-        echo "5th char: ".NAME[5]."<br/>";
-        echo "str_replace: ".str_replace('Riya', 'Parul', NAME)."<br/>";
+        
         echo "var_dump($age): ". var_dump($age)."<br/>";
         echo "var_dump(NAME): ".var_dump(NAME)."<br/>";
-
+        echo "<br/>";
+        
         // Increment/ Decrement Operators
         echo "<h3>Increment/ Decrement: </h3>";
         $n = 5;

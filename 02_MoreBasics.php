@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP Basics</title>
+    <title>More Basic PHP | 2</title>
 
     <style>
         *{
@@ -18,27 +18,13 @@
             padding: 23px;
             background-color: #e6cdcd;
         }
+        a:link, a:visited { color: rgb(0, 136, 255);}
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Let's Learn About PHP</h1>
-        <!-- If-Else Statement -->
-        <p>Your party status is here: </p>
-        <?php 
-            $age = 22;
-            if($age == 7){
-                echo "You are 7 years old!";
-            }
-            else if($age > 18){
-                echo "You can go to the party!";
-            }
-            else{
-                echo "You can not go to the party!";
-            }
-            echo "<br/>";
-            echo "<br/>";
-        ?>
+        <br/>
 
         <!-- Array and Loops -->
             <!-- Numeric Array -->
@@ -208,6 +194,9 @@
                 echo "<br/>";
                 echo "<h3>PHP Array Functions</h3>";
                 $lecturers = array("Mr. Jones", "Mr. Banda", "Mrs. Smith");
+                echo '<b>$lectures: </b><br/>';
+                print_r($lecturers);
+                echo "<br/>";
                 echo '<b>count($lecturers): </b>'.count($lecturers);
                 echo "<br/>";
                 echo '<b>is_array($lecturers): </b>'.is_array($lecturers);
@@ -251,8 +240,50 @@
                 asort($persons);
                 echo '<b>asort($persons): </b><br/>';
                 print_r($persons);
-                echo "<br/>";
+                echo "<br/><br/>";
             ?>
+
+
+        <!-- Control Structures -->
+        <?php 
+            // If-Else Statement
+            echo "<h3>If-Else Statement</h3>";
+            echo "<p>Your party status is here: </p>";
+            $age = 22;
+            if($age == 7){
+                echo "You are 7 years old!";
+            }
+            else if($age > 18){
+                echo "You can go to the party!";
+            }
+            else{
+                echo "You can not go to the party!";
+            }
+            echo "<br/>";
+            echo "<br/>";
+
+            // Switch Case Statement
+            echo "<h3>Switch Case Statement</h3>";
+            $today = "wednesday";
+
+            switch($today){
+                case "sunday":
+                    echo "pray for us sinners.";
+                    break;
+
+                case "wednesday":
+                    echo "ladies night, take her out for dinner";
+                    break;
+
+                case "saturday":
+                    echo "take care as you go out tonight.";
+                    break;
+
+                default:
+                    echo "have a nice day at work";
+                    break;
+            }
+        ?>
     </div>
    
 </body>
