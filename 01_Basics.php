@@ -1,4 +1,28 @@
-<?php 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic PHP | 1</title>
+    <style>
+       *{
+            padding: auto;
+            margin: auto;
+            box-sizing: border-box;
+        }
+        .container{
+            max-width: 80%;
+            margin: auto;
+            padding: 23px;
+            background-color: #cabf9b;
+        }
+        a:link, a:visited { color: rgb(0, 136, 255);}
+    </style>
+</head>
+<body>
+    <div class="container">
+    <?php 
         define('NAME', 'Riya Joshi'); // Constant with define()
         $age = 21; # Variable with $
         $email_label = 'You can reach me out at my E-mail ID ';
@@ -12,21 +36,7 @@
         $word="word";
         $pwd = "pas\$word";
         echo $pwd;
-?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic PHP | 1</title>
-    <style>
-        a:link, a:visited { color: rgb(0, 136, 255);}
-    </style>
-</head>
-<body>
+    ?>
     <h1>User Profile</h1>
     <div><?php echo 'Hey, my name is <b>'. NAME . '</b>'; ?></div>
     <div><?php echo "My age is $age years <br>"; ?></div>
@@ -96,5 +106,6 @@
         $d = true;
         var_dump($d); 
     ?>
+    </div>
 </body>
 </html>

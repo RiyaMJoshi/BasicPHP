@@ -23,7 +23,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Functions in PHP</h2>
+        <h1>Functions in PHP</h1>
         <br/>
     <?php
         define('NAME', 'Riya Joshi'); // Constant with define()
@@ -35,6 +35,9 @@
         echo "ToUpper: ".strtoupper(NAME)."<br/>";
         echo "ToLower: ".strtolower(NAME)."<br/>";
         echo "5th char: ".NAME[5]."<br/>";
+        echo "str_word_count: ".str_word_count(NAME)."<br/>";
+        echo "strrev: ".strrev(NAME)."<br/>";
+        echo "Search 'Jo' using strpos: ".strpos(NAME, 'Jo')."<br/>";
         echo "str_replace: ".str_replace('Riya', 'Parul', NAME)."<br/>";
         $my_var = "This is a really long sentence that I wish to cut short";
         echo "Initial String: $my_var <br/>";

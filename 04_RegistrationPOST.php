@@ -8,16 +8,18 @@
 
     <?php if (isset($_POST['form_submitted'])): ?> 
         <!-- this code is executed when the form is submitted -->
-
-        <h2>Thank You <?php echo $_POST['firstname']; ?> </h2>
-
-        <p>You have been registered as
-            <?php echo $_POST['firstname'] . ' ' . $_POST['lastname']; ?>
-        </p>
-
-        <p>Go <a href="04_RegistrationPOST.php">back</a> to the form</p>
-
+        <?php if (!isset($_POST['agree'])): ?>
+            <p>You have not accepted our terms of service</p>
         <?php else: ?>
+            <h2>Thank You <?php echo $_POST['firstname']; ?> </h2>
+
+            <p>You have been registered as
+            <?php echo $_POST['firstname'] . ' ' . $_POST['lastname']; ?>
+            </p>
+
+            <p>Go <a href="04_RegistrationPOST.php">back</a> to the form</p>
+        <?php endif; ?>
+    <?php else: ?>
 
             <h2>Registration Form</h2>
 
@@ -28,6 +30,10 @@
                 
                 <br><br> Last name:
                 <input type="text" name="lastname">
+
+                <br><br> *Agree to Terms of Service:
+                <input type="checkbox" name="agree">
+                
                 
 			    <input type="hidden" name="form_submitted" value="1" />
                 <br><br>
@@ -35,6 +41,6 @@
 
             </form>
 
-      <?php endif; ?> 
+    <?php endif; ?> 
 </body> 
 </html>
