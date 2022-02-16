@@ -76,6 +76,23 @@
         // echo "Date: $date <br/>";
         // date_add($date,date_interval_create_from_date_string("40 days"));
         // echo "After 40 days: ".date_format($date,"Y-m-d");
+        
+        echo "date('Y'): ".date("Y")."<br/>";
+        echo "time(): ".time()."<br/>";
+        
+        echo "<b>List of available time zone identifiers:</b><br/>";
+        echo "<ul>";
+        $timezone_identifiers = DateTimeZone::listIdentifiers();
+        foreach($timezone_identifiers as $key => $list){
+            echo "<li>".$list . "</li>";
+            if($key >= 4){
+                echo "<li><a href='03_timezones.php'>More TimeZones Here..</a></li>";
+                break;
+            }
+        }
+        echo "</ul>";
+
+
         echo "<br/>";
         echo "<a href='https://www.w3schools.com/php/php_ref_date.asp'>More Date Stuff Here..</a>";
         echo "<br/><br/>";
