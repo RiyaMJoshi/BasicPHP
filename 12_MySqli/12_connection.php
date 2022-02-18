@@ -7,7 +7,7 @@
 
     try{
         // Create Connection
-        $conn = new mysqli($server_name, $user_name, $password);
+        $conn = mysqli_connect($server_name, $user_name, $password);
         // echo "Connected successfully! <br/>";
 
         // CREATE DATABASE 'my_person_contacts' IF NOT EXISTS
@@ -15,6 +15,7 @@
         $db_result = mysqli_query($conn, $db_sql);
         // echo "DB Created Successfully!<br/>";
         
+        // Select Database
         $use_db_result = mysqli_select_db($conn, $db);
 
     }

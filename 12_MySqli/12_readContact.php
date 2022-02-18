@@ -31,7 +31,7 @@ try{
                 <th>Country</th>
             </tr>
             <?php
-            while($row = mysqli_fetch_array($select_contacts_result)){
+            while($row = mysqli_fetch_assoc($select_contacts_result)){
                 echo "<tr>";
                 echo "<td>" . $row['id'] . "</td>";         
                 echo "<td>" . $row['full_names'] . "</td>";        
@@ -47,7 +47,9 @@ try{
             <br/>
             <form method="POST" action="">
                 <input type="submit" name="addRecordBtn" value="Add a Record">
-                <input type="submit" name="refreshRecords" value="Refresh Records">
+                <input type="submit" name="refreshRecordBtn" value="Refresh Records">
+                <input type="submit" name="updateRecordBtn" value="Update Record">
+                <input type="submit" name="DeleteRecordBtn" value="Delete Record">
             </form>
             <?php
     }
@@ -57,16 +59,35 @@ try{
         $insert_sql = "INSERT INTO `my_contacts` (
             `full_names`,`gender`,`contact_no`,`email`,`city`,`country`
             )
-            VALUES ('Poseidon','Mail','541',' poseidon@sea.oc ','Troy','Ithaca')"; 
+            VALUES ('Poseidon','Male','541',' poseidon@sea.oc ','Troy','Ithaca')"; 
     
 	    $insert_result = mysqli_query($conn,$insert_sql); //execute SQL statement 
-    
-        echo "Poseidon has been successfully added to your contacts list";
+        $last_id = mysqli_insert_id($conn); // get id of last inserted record
+        echo "Poseidon with ID '$last_id' has been successfully added to your contacts list<br/>";
     }
 
     // Refresh Records on Button Click
-    if(isset($_POST['refreshRecords'])){
+    if(isset($_POST['refreshRecordBtn'])){
         echo "<meta http-equiv='refresh' content='0'>";
+    }
+
+    // Update Record for Poseidon on Button Click
+    if(isset($_POST['updateRecordBtn'])){
+        $id = 5;
+        $update_sql = "UPDATE `my_contacts` SET `contact_no` = '785' , `email` = 'poseidon@ocean.oc'";
+        $update_sql .= "WHERE `id` = $id";
+
+        $update_result = mysqli_query($conn, $update_sql);
+        echo "Record for Poseidon (ID: $id) updated successfully<br/>";
+    }
+
+    // Delete Record for Poseidon on Button Click
+    if(isset($_POST['DeleteRecordBtn'])){
+        $id = 5;
+        $delete_sql = "DELETE FROM `my_contacts` WHERE `id` = $id";
+
+        $delete_result = mysqli_query($conn, $delete_sql);
+        echo "Record for Poseidon (ID: $id) deleted successfully<br/>";
     }
 }
 catch(Exception $e){
