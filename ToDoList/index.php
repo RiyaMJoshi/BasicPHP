@@ -1,6 +1,4 @@
 <?php
-// INSERT QUERY 
-// INSERT INTO `notes` (`sno`, `title`, `description`, `tstamp`) VALUES (NULL, 'Finish drawing', 'Finish ArdhaNareshwar Drawing', current_timestamp());
 
 // Connecting to the database
 $server_name = "localhost";
@@ -115,7 +113,6 @@ catch(Exception $e){
                             <textarea class="form-control" id="descriptionEdit" name="descriptionEdit"
                                 rows="3"></textarea>
                         </div>
-                        <!-- <button type="submit" class="btn btn-primary" id="editNote" name="editNote">Update Note</button> -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -148,8 +145,6 @@ catch(Exception $e){
                             <textarea class="form-control" id="descriptionDelete" name="descriptionDelete"
                                 disabled="disabled" rows="3"></textarea>
                         </div>
-                        <!-- <button type="submit" class="btn btn-primary" id="deleteNote" name="deleteNote">Delete
-                            Note</button> -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
