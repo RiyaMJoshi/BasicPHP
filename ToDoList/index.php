@@ -10,12 +10,16 @@ $database = "rinotes";
 
 $insert = false;
 $update = false;
+$delete = false;
+
 try{
     // Create a Connection
     $conn = mysqli_connect($server_name, $user_name, $password, $database);
     
-    // Add Notes if method is POST
+    // Check if method is POST
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        
+        // Check if Add Note Button is Clicked
         if(isset($_POST['addBtn'])){
             $title = $_POST['title'];
             $description = $_POST['description'];            
@@ -33,19 +37,35 @@ try{
             }
         }
 
-        if(isset($_POST['editChanges'])){
-            // Update Query for Record
+        // Check if Edit Note Button is Clicked
+        if(isset($_POST['editNote'])){
+            
+            // Fetch sno, title and description to Edit
             $sno = $_POST['snoEdit'];
             $title = $_POST['titleEdit'];
             $description = $_POST['descriptionEdit'];            
             
-            // SQL Query to insert note
-            $update_sql = "UPDATE `notes` SET ( 
+            // SQL Query to Update note
+            $update_sql = "UPDATE `notes` SET 
                 `title` = '$title', `description` = '$description'
-                ) WHERE `sno` = $sno";
+             WHERE `sno` = $sno";
             $update_result = mysqli_query($conn, $update_sql);
             if($update_result){
                 $update = true;
+            }
+        }
+
+        // Check if Delete Note Button is Clicked
+        if(isset($_POST['deleteNote'])){
+            
+            // Fetch sno, title and description to Delete
+            $sno = $_POST['snoDelete'];           
+            
+            // SQL Query to delete note
+            $delete_sql = "DELETE FROM `notes` WHERE `sno` = $sno";
+            $delete_result = mysqli_query($conn, $delete_sql);
+            if($delete_result){
+                $delete = true;
             }
         }
         
@@ -75,39 +95,72 @@ catch(Exception $e){
 <body>
 
     <!-- Edit Modal -->
-    <!-- Edit trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
-    Launch demo modal
-    </button>
-
-    <!-- Edit Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="editModalLabel">Edit Note</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form action="#" method="POST">
-                <input type="hidden" name="snoEdit" id="snoEdit">
-                <div class="mb-3">
-                    <label for="title" class="form-label">Note Title</label>
-                    <input type="text" class="form-control" id="titleEdit" name="titleEdit" aria-describedby="emailHelp">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Note</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Note Description</label>
-                    <textarea class="form-control" id="descriptionEdit" name="descriptionEdit" rows="3"></textarea>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="editChanges" name="editChanges">Save changes</button>
-        </div>
+                <form action="" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="snoEdit" id="snoEdit">
+                        <div class="mb-3">
+                            <label for="titleEdit" class="form-label">Note Title</label>
+                            <input type="text" class="form-control" id="titleEdit" name="titleEdit"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descriptionEdit" class="form-label">Note Description</label>
+                            <textarea class="form-control" id="descriptionEdit" name="descriptionEdit"
+                                rows="3"></textarea>
+                        </div>
+                        <!-- <button type="submit" class="btn btn-primary" id="editNote" name="editNote">Update Note</button> -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="editNote" name="editNote">Update Note</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Sure to Delete this Note?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="snoDelete" id="snoDelete">
+                        <div class="mb-3">
+                            <label for="titleDelete" class="form-label">Note Title</label>
+                            <input type="text" class="form-control" id="titleDelete" name="titleDelete"
+                                disabled="disabled" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descriptionDelete" class="form-label">Note Description</label>
+                            <textarea class="form-control" id="descriptionDelete" name="descriptionDelete"
+                                disabled="disabled" rows="3"></textarea>
+                        </div>
+                        <!-- <button type="submit" class="btn btn-primary" id="deleteNote" name="deleteNote">Delete
+                            Note</button> -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="deleteNote" name="deleteNote">Delete
+                            Note</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -142,28 +195,38 @@ catch(Exception $e){
         // Show alert message on successful insert
         if($insert){
             ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Your note has been added successfully..!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> Your Note has been Added Successfully..!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
         }
 
         // Show alert message on successful update
         if($update){
             ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Your note has been updated successfully..!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> Your Note has been Updated Successfully..!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
+        }
+
+        // Show alert message on successful delete
+        if($delete){
+            ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> Your Note has been Deleted Successfully..!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
         }
     ?>
 
     <!-- Container for Main Form -->
     <div class="container my-4">
         <h2>Add a Note</h2>
-        <form action="#" method="POST">
+        <form action="" method="POST">
             <div class="mb-3">
                 <label for="title" class="form-label">Note Title</label>
                 <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
@@ -177,18 +240,18 @@ catch(Exception $e){
     </div>
 
     <!-- Container for Table -->
-    <div class="container">        
+    <div class="container">
         <table class="table" id="notes_table">
-        <thead>
-            <tr>
-            <th scope="col">S.No</th>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
+            <thead>
+                <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
             $sql = "SELECT * FROM `notes`";
             $result = mysqli_query($conn, $sql);
             $sno = 0;
@@ -199,15 +262,15 @@ catch(Exception $e){
                 echo "<td>" . $row['title'] . "</td>";        
                 echo "<td>" . $row['description'] . "</td>";         
                 echo "<td> <button class='edit btn btn-sm btn-primary' id=".$row['sno'].">Edit</button> 
-                    <button class='delete btn btn-sm btn-danger'>Delete</button>"; 
+                    <button class='delete btn btn-sm btn-danger' id=d".$row['sno'].">Delete</button>"; 
                 echo "</tr>";
             }
         ?>
-        
-        </tbody>
+
+            </tbody>
         </table>
     </div>
-    <hr/>
+    <hr />
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -222,14 +285,14 @@ catch(Exception $e){
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script>
         // Apply DataTable
-        $(document).ready( function () {
+        $(document).ready(function () {
             $('#notes_table').DataTable();
-        } );
+        });
 
         // Apply Click event Listeners to Edit Buttons
         edits = document.getElementsByClassName('edit');
-        Array.from(edits).forEach((element)=>{
-            element.addEventListener("click", (e)=>{
+        Array.from(edits).forEach((element) => {
+            element.addEventListener("click", (e) => {
                 // 'e' = Button
                 console.log("edit");
 
@@ -237,14 +300,46 @@ catch(Exception $e){
                 tr = e.target.parentNode.parentNode;
                 title = tr.getElementsByTagName("td")[0].innerText;
                 description = tr.getElementsByTagName("td")[1].innerText;
-                console.log(title, description);
+                console.log(title, ": ", description);
 
                 // Set (Fetch) values in Edit Modal Elements
-                titleEdit.value = title; 
+                titleEdit.value = title;
                 descriptionEdit.value = description;
                 snoEdit.value = e.target.id;  // Original ID from Database
                 console.log(e.target.id);
                 $('#editModal').modal('toggle');
+            })
+        });
+
+        // Apply Click event Listeners to Delete Buttons
+        deletes = document.getElementsByClassName('delete');
+        Array.from(deletes).forEach((element) => {
+            element.addEventListener("click", (e) => {
+                // 'e' = Button
+                console.log("delete");
+
+                // GrandParent of 'e' = 'tr' (e > td > tr)
+                tr = e.target.parentNode.parentNode;
+                title = tr.getElementsByTagName("td")[0].innerText;
+                description = tr.getElementsByTagName("td")[1].innerText;
+                console.log(title, ": ", description);
+
+                // Set (Fetch) values in Delete Modal Elements
+                titleDelete.value = title;
+                descriptionDelete.value = description;
+                sno = e.target.id.substr(1,);  // Original ID from Database
+                snoDelete.value = sno;
+                console.log(sno);
+                $('#deleteModal').modal('toggle');
+
+                // if (confirm("Do you really want to delete this "+ sno+ "note?")) {
+                //     console.log("Yes");
+                // }
+                // else{
+                //     console.log("No");
+                // }
+
+
             })
         });
     </script>
