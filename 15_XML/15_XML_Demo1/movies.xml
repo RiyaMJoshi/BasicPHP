@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Movies>
+  <movie movie_id="1672">
+    <Title>The Campaign</Title>
+    <Year>2015</Year>
+    <Genre>Suspense Thriller</Genre>
+    <Ratings>7.2</Ratings>
+  </movie>
+</Movies>

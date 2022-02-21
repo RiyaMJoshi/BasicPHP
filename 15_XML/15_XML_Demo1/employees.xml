@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<employees status = "ok">
+
+        <record man_no = "101">
+            <name>Joe Paul</name>
+            <position>CEO</position>
+        </record>
+
+        <record man_no = "102">
+            <name>Tasha Smith</name>
+            <position>Finance Manager</position>
+        </record>
+
+        <record man_no = "103">
+            <name>Joe Bidden</name>
+            <position>Founder</position>
+        </record>
+
+        <record man_no = "104">
+            <name>Natasha Smitha</name>
+            <position>Quality Control, Safety, Environmental Manager</position>
+        </record>
+
+        <record man_no = "105">
+            <name>Maneish Paul</name>
+            <position>Co-Founder</position>
+        </record>
+
+        <record man_no = "106">
+            <name>Joey Marks</name>
+            <position>Sales Manager</position>
+        </record>
+
+        <record man_no = "107">
+            <name>Jack Harry</name>
+            <position>General Manager</position>
+        </record>
+
+        <record man_no = "108">
+            <name>Tom Cruise</name>
+            <position>Marketing Manager</position>
+        </record>
+
+        <record man_no = "109">
+            <name>Archer Eindie</name>
+            <position>HR Manager</position>
+        </record>
+
+        <record man_no = "110">
+            <name>Taylor Jones</name>
+            <position>Accountant</position>
+        </record>
+
+        <record man_no = "111">
+            <name>John Wood</name>
+            <position>COO</position>
+        </record>
+
+        <record man_no = "112">
+            <name>David Wilson</name>
+            <position>Purchasing Manager</position>
+        </record>
+
+</employees>

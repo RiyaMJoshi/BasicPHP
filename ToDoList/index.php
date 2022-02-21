@@ -3,7 +3,7 @@
 // Connecting to the database
 $server_name = "localhost";
 $user_name = "root";
-$password = "";
+$password = "root@Mysql1";
 $database = "rinotes";
 
 $insert = false;
@@ -217,7 +217,7 @@ catch(Exception $e){
     <?php
         }
     ?>
-
+    
     <!-- Container for Main Form -->
     <div class="container my-4">
         <h2>Add a Note</h2>
