@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE student SYSTEM "student.dtd">  
+<!-- The DTD name and element type of the root element must be the same. -->
+<student>  
+    <firstname>Mark</firstname>  
+    <lastname>Wood</lastname>  
+    <school>Hills College</school>  
+</student>  

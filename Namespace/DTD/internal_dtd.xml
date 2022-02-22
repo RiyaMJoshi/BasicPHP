@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE student [
+<!ELEMENT student (firstname,lastname,school)>  
+<!ELEMENT firstname (#PCDATA)>  
+<!ELEMENT lastname (#PCDATA)>  
+<!ELEMENT school (#PCDATA)> 
+]>
+<!-- !ELEMENT student indicates the student element must contain firstname, lastname and school elements. -->
+<!-- !ELEMENT firstname indicates the firstname element is of type #PCDATA (Parsed Character Data) -->
+<!-- The DTD name and element type of the root element must be the same. -->
+
+<student>  
+    <firstname>Mark</firstname>  
+    <lastname>Wood</lastname>  
+    <school>Hills College</school>  
+</student>
